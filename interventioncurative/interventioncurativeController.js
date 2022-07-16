@@ -18,9 +18,7 @@ const {
     }
     updateinterventioncurativeController =async (req,res )=>{
         let interventioncurative =req.body
-        console.log('sss',interventioncurative.IdInterventionCurative);
-  
-        res.send(await updatinterventioncurativeService(interventioncurative))}
+       res.send(await updatinterventioncurativeService(interventioncurative))}
     
         deleteinterventioncurativeController =async (req,res)=>{
             let gId=req.params.id

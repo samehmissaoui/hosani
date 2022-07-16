@@ -17,16 +17,15 @@ const getinterventioncurativeByidService = (gId) => {
   });
 };
 const addinterventioncurativeService = (interventioncurative) => {
-  let qr = `INSERT INTO interventioncurative(DateDemande, DateReception, DateIntervention, DateValidation, Status,
-     Resultat, DescRésolution, DescProbleme, Etat,
-   propriete,idEquipment, IdDemandeur, IdPanne, IdAction, IdIntervenant, IdPdr)
+  let qr = `INSERT INTO interventioncurative( DateDemande, DateReception, DateIntervention, DateValidation, Status, Resultat,
+   DescResolution, DescProbleme, Etat, propriete, idEquipment, IdPanne, IdAction, IdUtilisateur, IdPdr, observation)
      VALUES ('${interventioncurative.DateDemande}','${interventioncurative.DateReception}',
      '${interventioncurative.DateIntervention}','${interventioncurative.DateValidation}',
      '${interventioncurative.Status}','${interventioncurative.Resultat}',
      '${interventioncurative.DescRésolution}','${interventioncurative.DescProbleme}',
-     '${interventioncurative.Etat}','${interventioncurative.propriete}','${interventioncurative.idEquipment}'
-     ,'${interventioncurative.IdDemandeur}','${interventioncurative.IdPanne}','${interventioncurative.IdAction}'
-     ,'${interventioncurative.IdIntervenant}','${interventioncurative.IdPdr}')`;
+     '${interventioncurative.Etat}','${interventioncurative.propriete}','${interventioncurative.idEquipment}',
+     '${interventioncurative.IdPanne}','${interventioncurative.IdAction}','${interventioncurative.IdUtilisateur}',
+     '${interventioncurative.IdPdr}','${interventioncurative.observation}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -38,10 +37,11 @@ const updatinterventioncurativeService = (interventioncurative) => {
   let qr = `UPDATE interventioncurative SET  DateDemande='${interventioncurative.DateDemande}',
   DateReception='${interventioncurative.DateReception}',DateIntervention='${interventioncurative.DateIntervention}',
   DateValidation='${interventioncurative.DateValidation}',Status='${interventioncurative.Status}',Resultat='${interventioncurative.Resultat}',
-  DescRésolution='${interventioncurative.DescRésolution}',DescProbleme='${interventioncurative.DescProbleme}',
+  DescResolution='${interventioncurative.DescRésolution}',DescProbleme='${interventioncurative.DescProbleme}',
   Etat='${interventioncurative.Etat}',propriete='${interventioncurative.propriete}',idEquipment='${interventioncurative.idEquipment}',
-  IdDemandeur='${interventioncurative.IdDemandeur}',IdPanne='${interventioncurative.IdPanne}',IdAction='${interventioncurative.IdAction}',
-  IdIntervenant='${interventioncurative.IdIntervenant}',IdPdr='${interventioncurative.IdPdr}'
+  IdPanne='${interventioncurative.IdPanne}',IdAction='${interventioncurative.IdAction}',
+  observation='${interventioncurative.observation}',
+  IdUtilisateur='${interventioncurative.IdUtilisateur}',IdPdr='${interventioncurative.IdPdr}'
    where IdInterventionCurative ='${interventioncurative.IdInterventionCurative}' `;
     return new Promise((resolve, reject) => {
       db.query(qr, (err, result) => {
