@@ -1,4 +1,4 @@
-const db = require('C:/Users/Poste 1/Desktop/hosani/shared-services/database-service.js')
+const db = require('../shared-services/database-service')
 
 const getEquipementService = () => {
   let qr = `select * from equipement`;

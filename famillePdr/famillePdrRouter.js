@@ -9,13 +9,13 @@ const {
     
 } = require("../famillePdr/famillePdrController");
 
-const famillePdr = express.Router();
+const famillePdrroute = express.Router();
 
-famillePdr.get("/", getfamillePdrController);
-famillePdr.get("/:id",getfamillePdrByidController);
-famillePdr.post("/", addfamillePdrController);
-famillePdr.delete("/:id", deletefamillePdrController);
-famillePdr.put("/", updatefamillePdrController);
+famillePdrroute.get("/", getfamillePdrController);
+famillePdrroute.get("/:id",getfamillePdrByidController);
+famillePdrroute.post("/", addfamillePdrController);
+famillePdrroute.delete("/:id", deletefamillePdrController);
+famillePdrroute.put("/", updatefamillePdrController);
 
-module.exports = famillePdr;
+module.exports = famillePdrroute;
 

@@ -1,6 +1,7 @@
 const {
-    getEquipementService, getEquipementServicebyid, addEquipementService,updateEquipementService,deleteEquipementService
-    } = require("../equipement/equipementService");
+    getEquipementService, getEquipementServicebyid,
+     addEquipementService,updateEquipementService,deleteEquipementService
+    } = require("./equipementService");
     
     getEquipementController = async (req, res) => {
       res.send(await getEquipementService());

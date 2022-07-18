@@ -18,8 +18,7 @@ const getfamillePdrByidService = (gId) => {
 };
 const addfamillePdrService = (famillePdr) => {
   let qr = `INSERT INTO famille_pdr( code, Designation)
-     VALUES ('${famillePdr.code}','${famillePdr.Designation}',
-     '${famillePdr.IdFamillePDR}')`;
+     VALUES ('${famillePdr.code}','${famillePdr.Designation}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -30,7 +29,7 @@ const updatefamillePdrService = (familleEquipement) => {
  
   let qr = `UPDATE famille_pdr SET code='${familleEquipement.code}',
   Designation='${familleEquipement.Designation}',
-   where IdInterventionCurative ='${familleEquipement.IdFamillePDR}' `;
+   where IdFamillePDR ='${familleEquipement.IdFamillePDR}' `;
     return new Promise((resolve, reject) => {
       db.query(qr, (err, result) => {
         err ? reject(err) : resolve(result);

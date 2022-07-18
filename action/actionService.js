@@ -1,43 +1,43 @@
 const db = require('../shared-services/database-service')
 
-const getMarqueService = () => {
-  let qr = `select * from marque`;
+const getActionService = () => {
+  let qr = `select * from action`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const getMarqueByidService = (gId) => {
-  let qr = `select * from marque where IdMarque  ='${gId}'`;
+const getActionByidService = (gId) => {
+  let qr = `select * from action where IdAction ='${gId}'`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const addMarqueService = (marque) => {
-  let qr = `INSERT INTO marque( Designation	)
-     VALUES ('${marque.Designation}',
-     '${marque.IdFamillePDR}')`;
+const addActionService = (action) => {
+  let qr = `INSERT INTO action( code, Designation)
+     VALUES ('${action.code}','${action.Designation}')`
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const updateMarqueService = (marque) => {
+const updateActionService = (action) => {
 
-  let qr = `UPDATE marque SET Designation	='${marque.Designation}',
-   where IdMarque  ='${marque.IdMarque}' `;
+  let qr = `UPDATE action SET code='${action.code}',
+  Designation='${action.Designation}',
+   where IdAction  ='${action.IdAction}' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const deleteMarqueService = (gId) => {
-  let qr = `delete from marque WHERE IdMarque =${gId}`;
+const deleteActionService = (gId) => {
+  let qr = `delete from action WHERE IdAction=${gId}`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -45,6 +45,6 @@ const deleteMarqueService = (gId) => {
   });
 };
 module.exports = {
-  getMarqueService, getMarqueByidService, addMarqueService,
-  updateMarqueService, deleteMarqueService
+  getActionService, getActionByidService, addActionService,
+  updateActionService, deleteActionService
 };
