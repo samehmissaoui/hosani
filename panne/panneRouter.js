@@ -1,9 +1,9 @@
 const express = require ('express');
 const { getPanneController,sumPanneController} = require('../panne/panneController');
 
-const routePanne = express.Router();
+const Panneroute = express.Router();
 
-routePanne.get('/',getPanneController);
-routePanne.get('/sum',sumPanneController);
+Panneroute.get('/',getPanneController);
+Panneroute.get('/sum',sumPanneController);
 
-module.exports = routePanne
+module.exports = Panneroute

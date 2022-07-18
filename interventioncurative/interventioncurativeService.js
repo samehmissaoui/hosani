@@ -58,4 +58,4 @@ const deleteinterventioncurativeService = (gId) => {
   });
 };
 module.exports = { getinterventioncurativeService, getinterventioncurativeByidService, addinterventioncurativeService, 
-    updatinterventioncurativeService, deleteinterventioncurativeService };
+        updatinterventioncurativeService, deleteinterventioncurativeService };
