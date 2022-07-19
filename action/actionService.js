@@ -28,7 +28,7 @@ const addActionService = (action) => {
 const updateActionService = (action) => {
 
   let qr = `UPDATE action SET code='${action.code}',
-  Designation='${action.Designation}',
+  Designation='${action.Designation}'
    where IdAction  ='${action.IdAction}' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {

@@ -1,42 +1,42 @@
 const db = require('../shared-services/database-service')
 
-const getMarqueService = () => {
-  let qr = `select * from marque`;
+const getRoleService = () => {
+  let qr = `select * from role`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const getMarqueByidService = (gId) => {
-  let qr = `select * from marque where IdMarque  ='${gId}'`;
+const getRoleByidService = (gId) => {
+  let qr = `select * from role where idRole   ='${gId}'`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const addMarqueService = (marque) => {
-  let qr = `INSERT INTO marque( Designation	)
-     VALUES ('${marque.Designation}')`;
+const addRoleService = (role) => {
+  let qr = `INSERT INTO role( Role,Etat	)
+     VALUES ('${role.Role}','${role.Etat}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const updateMarqueService = (marque) => {
+const updateRoleService = (role) => {
 
-  let qr = `UPDATE marque SET Designation	='${marque.Designation}'
-   where IdMarque  ='${marque.IdMarque}' `;
+  let qr = `UPDATE role SET Role	='${role.Role}'
+   where idRole   ='${role.idRole }' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
 };
-const deleteMarqueService = (gId) => {
-  let qr = `delete from marque WHERE IdMarque =${gId}`;
+const deleteRoleService = (gId) => {
+  let qr = `delete from role WHERE idRole  =${gId}`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -44,6 +44,6 @@ const deleteMarqueService = (gId) => {
   });
 };
 module.exports = {
-  getMarqueService, getMarqueByidService, addMarqueService,
-  updateMarqueService, deleteMarqueService
+  getRoleService, getRoleByidService, addRoleService,
+  updateRoleService, deleteRoleService
 };

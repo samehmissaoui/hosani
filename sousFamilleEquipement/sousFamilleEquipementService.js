@@ -17,9 +17,9 @@ const getSousfamilleEquipementByidService = (gId) => {
   });
 };
 const addSousfamilleEquipementService = (SousfamilleEquipement) => {
-  let qr = `INSERT INTO sous_famille_equipement (IdFamille_equip, code, Designation,IdFamille_equip)
+  let qr = `INSERT INTO sous_famille_equipement ( code, Designation,IdFamille_equip)
      VALUES ('${SousfamilleEquipement.code}','${SousfamilleEquipement.Designation}',
-     '${SousfamilleEquipement.IdFamille_equip}','${SousfamilleEquipement.IdFamille_equip})`;
+     '${SousfamilleEquipement.IdFamille_equip}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -28,9 +28,9 @@ const addSousfamilleEquipementService = (SousfamilleEquipement) => {
 };
 const updateSousfamilleEquipementService = (SousfamilleEquipement) => {
  
-  let qr = `UPDATE sous_famille_equipement SET code='${SousamilleEquipement.code}',
-  Designation='${SousfamilleEquipement.Designation}',IdFamille_equip='${SousfamilleEquipement.IdFamille_equip}',
-   where IdInterventionCurative ='${SousfamilleEquipement.IdFamillePDR}' `;
+  let qr = `UPDATE sous_famille_equipement SET code='${SousfamilleEquipement.code}',
+  Designation='${SousfamilleEquipement.Designation}',IdFamille_equip='${SousfamilleEquipement.IdFamille_equip}'
+   where IdSFamille_equip ='${SousfamilleEquipement.IdSFamille_equip}' `;
     return new Promise((resolve, reject) => {
       db.query(qr, (err, result) => {
         err ? reject(err) : resolve(result);

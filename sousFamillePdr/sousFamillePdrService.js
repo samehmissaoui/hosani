@@ -19,7 +19,7 @@ const getsousFamillePdrByidService = (gId) => {
 const addsousFamillePdrService = (sousFamillePdr) => {
   let qr = `INSERT INTO sous_famille_pdr( code, Designation,IdFamillePDR)
      VALUES ('${sousFamillePdr.code}','${sousFamillePdr.Designation}',
-     '${sousFamillePdr.IdFamillePDR}', '${sousFamillePdr.IdFamillePDR}')`;
+     '${sousFamillePdr.IdFamillePDR}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -28,8 +28,8 @@ const addsousFamillePdrService = (sousFamillePdr) => {
 };
 const updatesousFamillePdrService = (sousFamilleEquipement) => {
   let qr = `UPDATE sous_famille_pdr SET code='${sousFamilleEquipement.code}',
-  Designation='${sousFamilleEquipement.Designation}',  IdFamillePDR='${sousFamilleEquipement.IdFamillePDR}',
-   where IdInterventionCurative ='${sousFamilleEquipement.IdFamillePDR}' `;
+  Designation='${sousFamilleEquipement.Designation}',  IdFamillePDR='${sousFamilleEquipement.IdFamillePDR}'
+   where IdFamillePDR ='${sousFamilleEquipement.IdFamillePDR}' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);

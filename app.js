@@ -13,6 +13,11 @@ const famillePdr =require('./famillePdr/famillePdrRouter')
 const sousFamillePdrRoute =require('./sousFamillePdr/sousFamillePdrRouter')
 const actionRoute =require ('./action/actionRouter')
 const marqueRoute = require('./marque/marqueRouter')
+const RoleRoute =require ('./role/roleRouter')
+const Departementroute =require ('./departement/departementRouter')
+const emplacementroute =require ('./emplacement/emplacementRouter')
+const etatMachineRoute =require ('./etatMachine/etatMachineRouter')
+const deviseRouter =require ('./devise/deviserouter')
 
 const app = express();
 app.use(cors());
@@ -32,6 +37,11 @@ app.use('/famillePdr',famillePdr)
 app.use('/sousFamillePdr',sousFamillePdrRoute)
 app.use('/marque',marqueRoute)
 app.use('/action',actionRoute)
+app.use('/role',RoleRoute)
+app.use('/departement',Departementroute)
+app.use('/emplacement',emplacementroute)
+app.use('/etatMachine',etatMachineRoute)
+app.use('/devise',deviseRouter)
 app.use('/user',userroute)
 
 app.listen(port, ()=>{

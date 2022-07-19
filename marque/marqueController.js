@@ -1,4 +1,4 @@
-const {
+  const {
     getMarqueService, getMarqueByidService, addMarqueService,
     updateMarqueService, deleteMarqueService
   } = require("../marque/marqueService");

@@ -28,7 +28,7 @@ const addfamillePdrService = (famillePdr) => {
 const updatefamillePdrService = (familleEquipement) => {
  
   let qr = `UPDATE famille_pdr SET code='${familleEquipement.code}',
-  Designation='${familleEquipement.Designation}',
+  Designation='${familleEquipement.Designation}'
    where IdFamillePDR ='${familleEquipement.IdFamillePDR}' `;
     return new Promise((resolve, reject) => {
       db.query(qr, (err, result) => {

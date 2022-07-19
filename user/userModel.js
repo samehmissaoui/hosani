@@ -1,11 +1,25 @@
 export class User {
-id;
-name;
-password;
-role;
-    constructor(id,name,role){
-        this.id=id;
-        this.name=name;
-        this.role=role
+    Matricule;
+    Nom;
+    Prenom;
+    etat;
+    idRole;
+    email;
+    password
+    constructor(
+        Matricule,
+        Nom,
+        Prenom,
+        etat,
+        idRole,
+        email,
+        password){
+        this.Matricule=Matricule;
+        this.Nom=Nom;
+        this.Prenom=Prenom;
+        this.etat=etat;
+        this.idRole=idRole;
+        this.email=email;
+        this.password=password;
     }
 }
