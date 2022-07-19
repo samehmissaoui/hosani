@@ -14,7 +14,7 @@ const createTokenService = (user) => {
 };
 
 const getTokenByRefreshTokenService = (userID, token)=> {
-    const qr = `select * from token where userID = ${userID} AND refreshToken = '${token}'`;
+    const qr = `select * from token where userID = '${userID}' AND refreshToken = '${token}'`;
     const tokenize = new Promise((resolve, reject) => {
       db.query(qr, (err, result) => {
         if (err) {

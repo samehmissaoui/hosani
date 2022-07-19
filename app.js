@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./shared-services/database-service')
-
+const cookieParser = require('cookie-parser');
 
 const routePanne=require('./panne/panneRouter');
 const interventionroute=require('./interventioncurative/interventioncurativeRouter');
@@ -21,6 +21,7 @@ const deviseRouter =require ('./devise/deviserouter')
 
 const app = express();
 app.use(cors());
+app.use(cookieParser('MY SECRET'));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true

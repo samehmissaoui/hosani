@@ -16,7 +16,6 @@ const createUserervice = (
   Matricule,
   Nom,
   Prenom,
-  etat,
   idRole,
   email,
   password
@@ -43,13 +42,13 @@ const createJWTService = (id_user, role) => {
 
 const loginUserService = (email) => {
   const qr = `select * from utilisateur where email = '${email}'`;
-  const company = new Promise((resolve, reject) => {
+  const user = new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       if (result) return resolve(result);
       return reject(err);
     });
   });
-  return company;
+  return user;
 };
 const getUserByPhoneService = (email) => {
   const qr = `select phone from utilisateur where email = '${email}'`;

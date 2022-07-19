@@ -21,27 +21,27 @@ const getUserController = async (req, res) => {
 };
 
 const createUserController = async (req, res) => {
-  const { phone, name, password } = req.body;
+  const {  nom, password, matricule, prenom, email, idRole } = req.body;
   if (password.length < 8) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send({ msg: `Password should be at least 8 characters` });
   }
   const salt = bcrypt.genSaltSync(10);
-  const passwordHashed = bcrypt.hashSync(password, salt);
-  const new_user = await createUserervice(phone, name, passwordHashed);
+  const passwordHashed = bcrypt.hashSync(password,salt)
+  const new_user = await createUserervice( matricule, nom, prenom, idRole, email, passwordHashed);
   res.status(StatusCodes.CREATED).send({ msg: `User created successefully` });
 };
 
 const loginUserController = async (req, res) => {
   
-  const { phone, password } = req.body;
-  if (!phone || !password) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send({ msg: `Please provide your credentials` });
   }
-  const user = await loginUserService(phone);
+  const user = await loginUserService(email);
   if (Object.keys(user).length === 0) {
     return res
       .status(StatusCodes.FORBIDDEN)
@@ -51,15 +51,17 @@ const loginUserController = async (req, res) => {
   if (!password_match) {
     return res
       .status(StatusCodes.FORBIDDEN)
-      .send('your phone and/or password are/is wrong');
+      .send('your email and/or password are/is wrong');
   }
 
 
 
   const tokenUser = createTokenUser(
-    user[0].id,
-    user[0].role,
-    user[0].name
+    
+    user[0].IdUtilisateur,
+    user[0].idRole,
+    user[0].Nom,
+    console.log(user[0])
   );
 
   // create refresh token
@@ -68,7 +70,7 @@ const loginUserController = async (req, res) => {
 
   //check for existing token
 
-  const existingToken = await getTokenService(user[0].id);
+  const existingToken = await getTokenService(user[0].IdUtilisateur);
   if (Object.keys(existingToken).length !== 0) {
     const isValid = existingToken[0].isValid;
     if (!isValid) {
@@ -88,7 +90,7 @@ const loginUserController = async (req, res) => {
     refreshToken,
     ip,
     userAgent,
-    user: user[0].id,
+    user: user[0].IdUtilisateur,
   };
   await createTokenService(userToken);
   attachCookiesToResponse({ res, user: tokenUser, refreshToken });
@@ -97,8 +99,8 @@ const loginUserController = async (req, res) => {
 };
 
 const logoutUserController = async(req, res) => {
-  console.log('userID : ', req.user.id);
-  const loggedOutCompany = await deleteTokenService(req.user.id)
+  console.log('userID : ', req.user.IdUtilisateur);
+  const loggedOutCompany = await deleteTokenService(req.user.IdUtilisateur)
   res.cookie('accessToken', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now()),
