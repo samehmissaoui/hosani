@@ -17,8 +17,8 @@ const getRoleByidService = (gId) => {
   });
 };
 const addRoleService = (role) => {
-  let qr = `INSERT INTO role( Role,Etat	)
-     VALUES ('${role.Role}','${role.Etat}')`;
+  let qr = `INSERT INTO role( Role,Etat	,commentaire,code)
+     VALUES ('${role.Role}','${role.Etat}','${role.commentaire}','${role.code}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -27,7 +27,7 @@ const addRoleService = (role) => {
 };
 const updateRoleService = (role) => {
 
-  let qr = `UPDATE role SET Role	='${role.Role}'
+  let qr = `UPDATE role SET Role	='${role.Role}' , commentaire='${role.commentaire}',code='${role.code}'
    where idRole   ='${role.idRole }' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {

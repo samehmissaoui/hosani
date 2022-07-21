@@ -86,6 +86,17 @@ const comparePasswordService = (candidatePassword, hashedPassword) => {
   const isMatch = bcrypt.compareSync(candidatePassword, hashedPassword);
   return isMatch;
 };
+
+// const updateUserService =( id)=>{
+// let qr = `UPDATE utilisateur SET code='${sousFamilleEquipement.code}',
+//   Designation='${sousFamilleEquipement.Designation}',  IdFamillePDR='${sousFamilleEquipement.IdFamillePDR}'
+//    where IdFamillePDR ='${sousFamilleEquipement.IdFamillePDR}' `;
+//   return new Promise((resolve, reject) => {
+//     db.query(qr, (err, result) => {
+//       err ? reject(err) : resolve(result);
+//     });
+//   });
+// }
 module.exports = {
   createUserervice,
   createJWTService,
