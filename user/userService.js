@@ -18,10 +18,10 @@ const createUserervice = (
   Prenom,
   idRole,
   email,
-  password
+  password,photo
 ) => {
-  const qr = `insert into utilisateur (Matricule, Nom, Prenom, etat, idRole, email, password)
-                values ('${Matricule}','${Nom}', '${Prenom}', 1,'${idRole}','${email}','${password}')`;
+  const qr = `insert into utilisateur (Matricule, Nom, Prenom, etat, idRole, email, password,photo)
+                values ('${Matricule}','${Nom}', '${Prenom}', 1,'${idRole}','${email}','${password}','${photo}')`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -50,8 +50,8 @@ const loginUserService = (email) => {
   });
   return user;
 };
-const getUserByPhoneService = (email) => {
-  const qr = `select phone from utilisateur where email = '${email}'`;
+const getUserByemailService = (email) => {
+  const qr = `select nom from utilisateur where email = '${email}'`;
   const cmpny_check = new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       if (err) reject(err);
@@ -60,7 +60,7 @@ const getUserByPhoneService = (email) => {
   });
   return cmpny_check;
 };
-const getAllDataUserByPhoneService = (email) => {
+const getAllDataUserByemailService = (email) => {
   const qr = `select * from utilisateur where email='${email}'`;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
@@ -87,23 +87,36 @@ const comparePasswordService = (candidatePassword, hashedPassword) => {
   return isMatch;
 };
 
-// const updateUserService =( id)=>{
-// let qr = `UPDATE utilisateur SET code='${sousFamilleEquipement.code}',
-//   Designation='${sousFamilleEquipement.Designation}',  IdFamillePDR='${sousFamilleEquipement.IdFamillePDR}'
-//    where IdFamillePDR ='${sousFamilleEquipement.IdFamillePDR}' `;
-//   return new Promise((resolve, reject) => {
-//     db.query(qr, (err, result) => {
-//       err ? reject(err) : resolve(result);
-//     });
-//   });
-// }
+const updateUserService =( utilisateur)=>{
+let qr = `UPDATE utilisateur SET Nom='${utilisateur.Nom}',
+Prenom='${utilisateur.Prenom}', email='${utilisateur.email}',
+  photo='${utilisateur.photo}'
+   where IdUtilisateur  ='${utilisateur.IdUtilisateur }' `;
+  return new Promise((resolve, reject) => {
+    db.query(qr, (err, result) => {
+      err ? reject(err) : resolve(result);
+    });
+  });
+}
+
+const getUserByIdService=(id)=>{
+let qr =  `select * from utilisateur where IdUtilisateur='${id}'`
+return new Promise((resolve, reject) => {
+  db.query(qr, (err, result) => {
+    err ? reject(err) : resolve(result);
+  });
+});
+
+}
 module.exports = {
   createUserervice,
   createJWTService,
   getUserService,
   loginUserService,
-  getUserByPhoneService,
-  getAllDataUserByPhoneService,
+  getUserByemailService,
+  getAllDataUserByemailService,
   createUserJWTService,
   comparePasswordService,
+  updateUserService,
+  getUserByIdService
 };

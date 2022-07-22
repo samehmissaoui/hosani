@@ -1,18 +1,22 @@
-const express = require('express')
+const express = require("express");
 
-const {createUserController,
-    getUserController, 
-    loginUserController ,logoutUserController} = require ('./userController')
-const auth = require('../middlewares/authentication')
-
+const {
+  createUserController,
+  getUserController,
+  loginUserController,
+  logoutUserController,
+  updateUserController,
+  getUserByIdController
+} = require("./userController");
+const auth = require("../middlewares/authentication");
 
 const userRouter = express.Router();
 
-userRouter.post('/register',createUserController)
-userRouter.get('/',getUserController)
-userRouter.delete('/logout',auth, logoutUserController
-)
-userRouter.post('/login',loginUserController);
+userRouter.get("/:id", getUserByIdController);
+userRouter.post("/register", createUserController);
+userRouter.get("/", getUserController);
+userRouter.delete("/logout", auth, logoutUserController);
+userRouter.post("/login", loginUserController);
+userRouter.put("/", updateUserController);
 
-
-module.exports = userRouter
+module.exports = userRouter;

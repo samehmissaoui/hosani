@@ -5,7 +5,8 @@ export class User {
     etat;
     idRole;
     email;
-    password
+    password;
+    photo
     constructor(
         Matricule,
         Nom,
@@ -13,7 +14,8 @@ export class User {
         etat,
         idRole,
         email,
-        password){
+        password,
+        photo){
         this.Matricule=Matricule;
         this.Nom=Nom;
         this.Prenom=Prenom;
@@ -21,5 +23,6 @@ export class User {
         this.idRole=idRole;
         this.email=email;
         this.password=password;
+        this.photo=photo
     }
 }

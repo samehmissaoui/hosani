@@ -17,8 +17,8 @@ const getActionByidService = (gId) => {
   });
 };
 const addActionService = (action) => {
-  let qr = `INSERT INTO action( code, Designation)
-     VALUES ('${action.code}','${action.Designation}')`
+  let qr = `INSERT INTO action( code, Designation,observation)
+     VALUES ('${action.code}','${action.Designation}','${action.observation}')`
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {
       err ? reject(err) : resolve(result);
@@ -28,7 +28,7 @@ const addActionService = (action) => {
 const updateActionService = (action) => {
 
   let qr = `UPDATE action SET code='${action.code}',
-  Designation='${action.Designation}'
+  Designation='${action.Designation}',  observation='${action.observation}'
    where IdAction  ='${action.IdAction}' `;
   return new Promise((resolve, reject) => {
     db.query(qr, (err, result) => {

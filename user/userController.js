@@ -1,5 +1,5 @@
-const { createUserervice,createJWTService,getUserService ,loginUserService,getUserByPhoneService,
-  getAllDataUserByPhoneService,createUserJWTService,comparePasswordService} = require("../user/userService");
+const { createUserervice,createJWTService,getUserService ,loginUserService,getUserByemailService,
+  getAllDataUserByemailService,createUserJWTService,comparePasswordService,updateUserService,getUserByIdService} = require("../user/userService");
 
 const { StatusCodes } = require("http-status-codes");
 const  bcrypt  = require("bcryptjs");
@@ -19,9 +19,19 @@ const getUserController = async (req, res) => {
   const user = await getUserService();
   res.status(StatusCodes.OK).send({ user: user });
 };
+const getUserByIdController = async (req, res) => {
+  const id=req.params.id
+  const user = await getUserByIdService(id);
+  res.status(StatusCodes.OK).send({ user: user });
+};
+const updateUserController = async (req, res) => {
+  const utilisateur = req.body
+  const user = await updateUserService(utilisateur);
+  res.status(StatusCodes.OK).send({ user: user });
+};
 
 const createUserController = async (req, res) => {
-  const {  nom, password, matricule, prenom, email, idRole } = req.body;
+  const {  nom, password, matricule, prenom, email, idRole ,photo} = req.body;
   if (password.length < 8) {
     return res
       .status(StatusCodes.BAD_REQUEST)
@@ -29,7 +39,7 @@ const createUserController = async (req, res) => {
   }
   const salt = bcrypt.genSaltSync(10);
   const passwordHashed = bcrypt.hashSync(password,salt)
-  const new_user = await createUserervice( matricule, nom, prenom, idRole, email, passwordHashed);
+  const new_user = await createUserervice( matricule, nom, prenom, idRole, email, passwordHashed,photo);
   res.status(StatusCodes.CREATED).send({ msg: `User created successefully` });
 };
 
@@ -111,4 +121,5 @@ const logoutUserController = async(req, res) => {
   });
   res.status(StatusCodes.OK).send({ msg: 'You logged out!' });
 }
-module.exports = { createUserController, getUserController ,loginUserController ,logoutUserController};
+module.exports = { createUserController, getUserController ,
+  loginUserController ,logoutUserController ,getUserByIdController,updateUserController};
